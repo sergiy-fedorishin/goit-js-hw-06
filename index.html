@@ -13,23 +13,30 @@
 </head>
 
 <body>
-    <section>
-        <h2>Popular technologies</h2>
-        <ul class="list"></ul>
-    </section>
+    <button type="button" data-action="set">Set focus to input</button>
+    <button type="button" data-action="remove">Remove focus from input</button>
+    <br><br>
+    <input type="text" class="text-input" />
     <script>
-        const technologies = ["HTML", "CSS", "JavaScript", "React", "Node"];
-        const list = document.querySelector(".list");
+        const textInput = document.querySelector(".text-input");
+        const setFocusBtn = document.querySelector('[data-action="set"]');
+        const removeFocusBtn = document.querySelector('[data-action="remove"]');
 
-        const markup = technologies
-            .map((technology) => `<li class="list-item">${technology}</li>`)
-            .join("");
+        setFocusBtn.addEventListener("click", () => {
+            textInput.focus();
+        });
 
-        // Check the console, you'll see a single string with HTML tags
-        console.log(markup);
+        removeFocusBtn.addEventListener("click", () => {
+            textInput.blur();
+        });
 
-        // Adding all the markup in one operation
-        list.innerHTML = markup;
+        textInput.addEventListener("focus", () => {
+            textInput.value = "This input has focus";
+        });
+
+        textInput.addEventListener("blur", () => {
+            textInput.value = "";
+        });
     </script>
 </body>
 
